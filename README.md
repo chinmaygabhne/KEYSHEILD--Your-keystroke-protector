@@ -79,7 +79,6 @@ g++ -std=c++17 -O2 -Wall -Wextra -pedantic keyboard_hook.cpp -o keyboard_hook.ex
 ```
 
 ### Run
-
 ```bat
 keyboard_hook.exe
 ```
