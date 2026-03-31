@@ -49,13 +49,6 @@ tthhiiss  iiss  aa  tteesstt  ttoo  sseeee  iiff  tthhee  kkeeyyllooggggeerr  ii
 --- Logger stopped (Ctrl+C) at 2026-04-01 01:28:44 ---
 
 
-==================================================
-Session started: 2026-04-01 01:55:09
-==================================================
-hihi  kkiittttuu, , hhoo  [BKSP][BKSP]ww  aarer e yyoouu[SHIFT]??[SHIFT][CTRL]c
-
---- Logger stopped (Ctrl+C) at 2026-04-01 01:55:31 ---
-
 
 ==================================================
 Session started: 2026-04-01 02:09:02
@@ -84,3 +77,13 @@ Session started: 2026-04-01 02:13:45
 hi, is thsi[BKSP][BKSP]is working[SHIFT]?[ALT][TAB][CTRL]c
 
 --- Logger stopped (Ctrl+C) at 2026-04-01 02:13:56 ---
+
+
+==================================================
+Session started: 2026-04-01 02:26:12
+==================================================
+no
+[ENTER]
+is the keyloggerworking fine[SHIFT]???/ we'll see[BKSP][CTRL]c
+
+--- Logger stopped (Ctrl+C) at 2026-04-01 02:26:45 ---
