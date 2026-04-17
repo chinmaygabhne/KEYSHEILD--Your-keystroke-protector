@@ -32,13 +32,14 @@ if (Test-Command "cl") {
 cmake -S $root -B $buildDir @generatorArgs
 cmake --build $buildDir --config Release
 
-$exe = Join-Path $buildDir "keyboard_hook.exe"
+$exe = Join-Path $buildDir "KeyShield.exe"
 if (-not (Test-Path $exe)) {
-  $exe = Join-Path $buildDir "Release\keyboard_hook.exe"
+  $exe = Join-Path $buildDir "Release\KeyShield.exe"
 }
 if (Test-Path $exe) {
   Write-Host "Built: $exe" -ForegroundColor Green
-  Write-Host "Run:  `"$exe`""
+  Write-Host "Run analysis demo: `"$exe`" analyze"
+  Write-Host "Run hook demo:     `"$exe`" hook"
 } else {
-  Write-Host "Build finished but keyboard_hook.exe was not found in expected locations." -ForegroundColor Yellow
+  Write-Host "Build finished but KeyShield.exe was not found in expected locations." -ForegroundColor Yellow
 }
