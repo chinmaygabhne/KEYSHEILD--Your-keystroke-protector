@@ -1,84 +1,61 @@
-# KeyShield: Conceptual Framework for Keylogger Detection
+# KeyShield
 
-### KeyShield is a research-based project focused on the theoretical design and architectural planning of a behavioral-based keylogging detection tool. This project explores the transition from traditional signature-based security to a more robust, behavioral monitoring model.
+KeyShield is a Windows-focused proof-of-concept repository for behavioral keylogger detection. The repository is now aligned around one runnable C++ entry point, `KeyShield.exe`, with two demo modes exposed through that single executable.
 
-# 📖 Overview
+## What runs now
 
-In the current cybersecurity landscape, custom-written keyloggers can easily bypass standard antivirus software. KeyShield aims to provide a conceptual framework for a tool that monitors system-level interactions to identify unauthorized keyboard hooking and polling patterns.
+- `analyze`: scores demo processes using simple behavioral heuristics
+- `hook`: installs a low-level keyboard hook and prints virtual-key codes
 
-# 🏗️ Proposed Architecture
+## Project layout
 
-The project is designed around a Conceptual Dual-Layer Model:
+- `main.cpp`: primary application entry point
+- `Analyst.cpp` / `Analyst.h`: process threat scoring demo logic
+- `keyboard_hook.cpp` / `keyboard_hook.h`: low-level keyboard hook demo
+- `Dashboard.py`: optional mock GUI for presentation/demo purposes
+- `KeySheildDriver.c`: KMDF driver stub for future work, not part of the current build
 
-User Layer (Planned): A monitoring service that analyzes process activities for specific Windows API calls, such as SetWindowsHookEx and GetAsyncKeyState, which are common markers of keylogging behavior.
+## Quick build
 
-# 🧪 Methodology & Research Focus
-
-The project focuses on the following theoretical pillars:
-
-Hooking Logic Analysis: Researching how malicious scripts insert themselves into the Windows message chain.
-
-Behavioral Pattern Mapping: Defining the difference between legitimate software (e.g., gaming overlays) and malicious loggers based on their API calling frequency.
-
-Mitigation Strategy: Designing the logic required to "unhook" malicious functions and terminate suspicious process threads.
-
-# 🛠️ Planned Tech Stack
-
-Research IDE: Visual Studio / Cursor
-
-Core Concepts: Windows Driver Kit (WDK), Win32 API Internals
-
-Documentation: Technical Specifications and Architectural Diagrams
-
-# 📅 Current Progress & Roadmap
-
-Phase 1 (Completed): Literature review and problem background analysis.
-
-Phase 2 (Current): Architectural design and API interaction research.
-
-Phase 3 (Next): Development of a basic proof-of-concept for user-mode hook detection.
-
-Phase 4: Performance optimization and final report documentation.
-
-# 📝 Project Status
-
-This repository serves as the primary documentation for the Minor Project First Review (Feb 25, 2026). The current focus is on the theoretical validation of the proposed detection engine.
-
-## Standalone PoC: Global keyboard hook (console)
-
-This repo also includes a small standalone Windows console program, `keyboard_hook.cpp`, that installs a global low-level keyboard hook (`SetWindowsHookEx` with `WH_KEYBOARD_LL`) and prints virtual-key codes in real time while it runs a standard Windows message loop (`GetMessage` / `DispatchMessage`).
-
-### Quick build (recommended)
-
-From **PowerShell** in the repo root:
+From PowerShell in the repository root:
 
 ```powershell
 .\build.ps1
 ```
 
-Then run the printed `keyboard_hook.exe` path (usually `.\build\keyboard_hook.exe` or `.\build\Release\keyboard_hook.exe`).
+If the build succeeds, run one of these:
 
-### Build (CMake manual)
+```powershell
+.\build\Release\KeyShield.exe analyze
+.\build\Release\KeyShield.exe hook
+```
+
+Depending on your generator, the executable may also be placed at `.\build\KeyShield.exe`.
+
+## Manual build with CMake
 
 ```powershell
 cmake -S . -B .\build
 cmake --build .\build --config Release
-.\build\Release\keyboard_hook.exe
+.\build\Release\KeyShield.exe analyze
 ```
 
-### Build (MSVC Developer Command Prompt, no CMake)
+## Manual build with MSVC
 
 ```bat
-cl /EHsc /W4 keyboard_hook.cpp user32.lib
+cl /EHsc /W4 main.cpp Analyst.cpp keyboard_hook.cpp user32.lib /Fe:KeyShield.exe
 ```
 
-### Build (MinGW-w64 g++, no CMake)
+## Commands
 
-```bat
-g++ -std=c++17 -O2 -Wall -Wextra -pedantic keyboard_hook.cpp -o keyboard_hook.exe -luser32
+```text
+KeyShield.exe analyze
+KeyShield.exe hook
+KeyShield.exe help
 ```
 
-### Run
-```bat
-keyboard_hook.exe
-```
+## Notes
+
+- The analysis mode is a seeded demo, not a live detector yet.
+- The hook mode is a standalone Win32 proof of concept for local testing.
+- The Python dashboard and KMDF driver stub are intentionally outside the primary build so the repo has one clear executable path.
