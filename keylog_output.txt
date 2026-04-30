@@ -48,3 +48,13 @@ Session started: 2026-04-24 23:57:04
 credentials ,,, hi how are you[ESC]
 
 --- Logger stopped at 2026-04-24 23:57:24 ---
+
+
+==================================================
+Session started: 2026-04-25 12:43:01
+==================================================
+[CMD]note
+[ENTER]
+hi credential[F1][ESC]
+
+--- Logger stopped at 2026-04-25 12:43:23 ---

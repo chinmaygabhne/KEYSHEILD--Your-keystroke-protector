@@ -1,9 +1,3 @@
-"""
-KeyShield Project - Test Keylogger (Fixed)
------------------------------------------
-Fix: Prevents duplicate key logging using key state tracking.
-"""
-
 import os
 import sys
 import datetime
